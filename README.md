@@ -6,6 +6,6 @@
 ## npm start
 실행
 
-##repositories
+## repositories
 이전 저장소는 처음 경로설정 에러로인하여 지우고
 현재 저장소로 새로 제작하였습니다.
