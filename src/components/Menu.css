@@ -1,0 +1,21 @@
+
+
+div a{
+    font-size : 1.5em;
+    font-weight: 1000;
+    text-align: center;
+    color: white;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+
+}
+
+a:hover {
+    text-decoration: underline;
+
+}

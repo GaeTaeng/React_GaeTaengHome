@@ -1,0 +1,11 @@
+#nav {
+    float: left;
+}
+
+#bottom {
+    float: left;
+    width: 100vw;
+    background-color: black;
+    color: white;
+    vertical-align: bottom;
+}
