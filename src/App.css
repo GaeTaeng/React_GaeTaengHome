@@ -1,8 +1,12 @@
+
 #nav {
+    position: absolute;
     float: left;
 }
 
 #bottom {
+    margin-top: -42px;
+    position: fixed;
     font-size: 17;
     font-weight: 700;
     float: left;
@@ -13,6 +17,8 @@
     vertical-align: bottom;
 }
 
-#banner {
-    float:unset;
+
+#contents {
+    position: absolute;
+    float:left;
 }
