@@ -3,16 +3,16 @@ import React from 'react';
 import './App.css';
 
 import Navigation from './components/Main/navigation/Navigation'
-import Banner from './components/Main/contents/Banner'
+
 import Contents from './components/Main/contents/Contents'
 
 function App(props) {
 
   return (
     <div className="App">
-      <Navigation id="nav" />
+      <Navigation />
 
-      <Contents id="contents"/>
+      <Contents />
 
       <div id="bottom">
         GaeTaeng's Home <br />

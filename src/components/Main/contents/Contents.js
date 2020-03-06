@@ -4,8 +4,8 @@ import Banner from './Banner';
 function Contents() {
     return(
         <div>
-            a
-         <Banner id="banner" />
+        <Banner id="banner" />
+            안녕!
         </div>
     )
 }
