@@ -1,14 +1,14 @@
 import React from 'react';
 import Banner from './Banner';
-
+import Board from './board/Board';
 function Contents() {
-    return(
+    return (
         <div>
-        <Banner id="banner" />
-            안녕!
+            <Banner />
+            <Board />
         </div>
     )
 }
- 
+
 
 export default Contents;
