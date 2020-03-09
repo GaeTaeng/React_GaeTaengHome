@@ -34,7 +34,7 @@ const post = [
         'id': 2,
         'title': "2 Post",
         'content': "내용2",
-        'writer': "fmldlmdd",
+        'writer': "힁흐이희잏이ㅣ",
         'date': Date.now.toString
     },
     {
