@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Board.css";
 
-
+import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,12 +9,25 @@ import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
+
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+    root: {
+        width: '100vh',
+        overflowX: "auto"
+    },
+    table: {
+        minWidth: "100vh"
+    }
+});
+
 const post = [
     {
         'id': 1,
         'title': "1 Post",
         'content': "내용1",
-        'writer': "김태훈",
+        'writer': "ㄱㅌ",
         'date': Date.now.toString
     },
     {
@@ -33,9 +46,9 @@ const post = [
     }
 ]
 
-function Board() {
+export default function Board() {
     return (
-        <div>
+        <div id="Board">
             <PostList />
         </div>
     )
@@ -44,42 +57,41 @@ function Board() {
 
 
 function PostList() {
+    const classes = useStyles();
     return (
-        <div>
-        <TableHead>
-            <TableCell>ID</TableCell>
-            <TableCell>TITLE</TableCell>
-            <TableCell>CONTENT</TableCell>
-            <TableCell>WRITER</TableCell>
-            <TableCell>DATE</TableCell>
-        </TableHead>
-            {
-                post.map(p => {
-                    return (
-                        <PostView id={p.id} title={p.title} content={p.content} writer={p.writer} date={p.date} />
+        <Paper className={classes.root}>
+            <Table className={classes.table}>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>ID</TableCell>
+                        <TableCell>TITLE</TableCell>
+                        <TableCell>CONTENT</TableCell>
+                        <TableCell>WRITER</TableCell>
+                        <TableCell> DATE</TableCell>
+                    </TableRow>
+                </TableHead>
 
-                    )
-                })
-            }
-        </div>
+                <TableBody>
+                    {post.map(p => {
+                        return (
+                            <PostView id={p.id} title={p.title} content={p.content} writer={p.writer} date={p.date} />
+                        )
+                    })}
+                </TableBody>
+
+            </Table>
+        </Paper>
     )
 }
 
 function PostView(props) {
     return (
-        <div>
-            <TableRow>
-
-                <TableCell>{props.id}</TableCell>
-                <TableCell>{props.title}</TableCell>
-                <TableCell>{props.content}</TableCell>
-                <TableCell>{props.writer}</TableCell>
-                <TableCell> {props.date}</TableCell>
-            </TableRow>
-        </div>
+        <TableRow>
+            <TableCell>{props.id}</TableCell>
+            <TableCell>{props.title}</TableCell>
+            <TableCell>{props.content}</TableCell>
+            <TableCell>{props.writer}</TableCell>
+            <TableCell>{props.date}</TableCell>
+        </TableRow>
     )
 }
-
-
-
-export default Board;
