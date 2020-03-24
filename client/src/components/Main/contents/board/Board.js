@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./Board.css";
 
 import Paper from '@material-ui/core/Paper';
@@ -11,6 +11,7 @@ import TableCell from '@material-ui/core/TableCell';
 
 
 import { makeStyles } from '@material-ui/core/styles';
+import { useState } from 'react';
 
 const useStyles = makeStyles({
     root: {
@@ -22,31 +23,10 @@ const useStyles = makeStyles({
     }
 });
 
-const post = [
-    {
-        'id': 1,
-        'title': "1 Post",
-        'content': "내용1",
-        'writer': "ㄱㅌ",
-        'date': Date.now.toString
-    },
-    {
-        'id': 2,
-        'title': "2 Post",
-        'content': "내용2",
-        'writer': "힁흐이희잏이ㅣ",
-        'date': Date.now.toString
-    },
-    {
-        'id': 3,
-        'title': "3 Post",
-        'content': "내용3",
-        'writer': "탱탱",
-        'date': Date.now.toString
-    }
-]
 
 export default function Board() {
+   
+    console.log("Board!!");
     return (
         <div id="Board">
             <PostList />
@@ -58,12 +38,45 @@ export default function Board() {
 
 function PostList() {
     const classes = useStyles();
+
+    const [posts, setPosts] = useState("");
+    /*componentDidMount() {
+        this.callApi().then(res => this.setState({posts:res}))
+        .catch(err => console.log(err));
+    }
+    */
+    console.log("PostList!!");
+    useEffect(() => {
+        async function callAPI() {
+            const response = await fetch('/api/post');
+            const body = await response.json();
+            console.log("BODY : " + body);
+            return body;
+        }
+        console.log("callAPI. . .");
+        callAPI().then(
+            (res) => { setPosts(res)}
+        );
+
+       // this.callApi().then(res => this.setState({posts:res}))
+        //.catch(err => console.log(err));
+        /*
+        callApi = async () => {
+            const response = await fetch('/api/post');
+            const body = await response.json();
+            return body;
+        }.then(
+            
+        )
+        */
+    },[]);
+
     return (
         <Paper className={classes.root}>
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell>ID</TableCell>
+                        <TableCell>ID!</TableCell>
                         <TableCell>TITLE</TableCell>
                         <TableCell>CONTENT</TableCell>
                         <TableCell>WRITER</TableCell>
@@ -72,11 +85,12 @@ function PostList() {
                 </TableHead>
 
                 <TableBody>
-                    {post.map(p => {
+                    {posts ? console.log(posts) : console.log("posts is Null")}
+                    {posts ? posts.map(p => {
                         return (
                             <PostView id={p.id} title={p.title} content={p.content} writer={p.writer} date={p.date} />
                         )
-                    })}
+                    }) : console.log("posts is Null")}
                 </TableBody>
 
             </Table>
@@ -87,6 +101,7 @@ function PostList() {
 function PostView(props) {
     return (
         <TableRow>
+            
             <TableCell>{props.id}</TableCell>
             <TableCell>{props.title}</TableCell>
             <TableCell>{props.content}</TableCell>

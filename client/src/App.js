@@ -8,7 +8,7 @@ import Contents from './components/Main/contents/Contents'
 
 
 function App(props) {
-
+  console.log("Start App");
   return (
     <div className="App">
       <Navigation />
