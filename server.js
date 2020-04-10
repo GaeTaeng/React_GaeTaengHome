@@ -35,6 +35,20 @@ app.get('/api/post', (req, res) => {
             'content': "내용3",
             'writer': "탱탱",
             'date': nowDate
+        },
+        {
+            'id': 4,
+            'title': "3 Post",
+            'content': "까치야~~",
+            'writer': "까치까치쒈",
+            'date': nowDate
+        },
+        {
+            'id': 5,
+            'title': "3 Post",
+            'content': "내용55555",
+            'writer': "하잏잏아머이ㅏㄴ",
+            'date': nowDate
         }
     ]);
 });

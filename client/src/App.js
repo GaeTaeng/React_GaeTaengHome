@@ -6,15 +6,23 @@ import Navigation from './components/Main/navigation/Navigation'
 
 import Contents from './components/Main/contents/Contents'
 
+import { useState } from 'react';
 
 function App(props) {
+  const [state, setState] = useState("HOME");
+
   console.log("Start App");
+  var CheckMenu = (iNum) => {
+    setState(iNum);
+  }
+
   return (
     <div className="App">
-      <Navigation />
-
-      <Contents />
-
+      <Navigation CheckMenu = {CheckMenu}/>
+      {state === "HOME" ? <Contents /> : <div>Start ! { state }</div> }
+      
+      {/* <Contents /> */}
+      
       <div id="bottom">
         make with React_Node.js
         GaeTaeng's Home <br />

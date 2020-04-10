@@ -13,8 +13,9 @@
     width: 100px;
     top: 50%;
     left: 20px;
+    padding-top: 5vh;
     margin-top: -42vh;
-    margin-left: 20px;
+    margin-left: 5px;
     line-height:5;
     text-align: center;
     
@@ -23,5 +24,7 @@
 
 
 hr {
-    width: 80px;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    width: 130px;
 }

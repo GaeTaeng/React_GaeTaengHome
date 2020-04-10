@@ -15,11 +15,11 @@ import { useState } from 'react';
 
 const useStyles = makeStyles({
     root: {
-        width: '100vh',
-        overflowX: "auto"
+        overflowX: "auto",
+        maxWidth:'100vh',
     },
     table: {
-        minWidth: "100vh"
+        minWidth:'100vh',
     }
 });
 

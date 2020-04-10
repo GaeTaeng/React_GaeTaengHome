@@ -1,21 +1,57 @@
 
 
-div a{
+a{
+    margin: 0, 0, 0, 0;
+    background: none;
+    color: #fff;
+    display: block;
     font-size : 1.5em;
     font-weight: 1000;
-    text-align: center;
-    color: white;
-}
-
-a:link {
-    text-decoration: none;
-}
-
-a:visited {
-
-}
-
-a:hover {
-    text-decoration: underline;
-
-}
+    font-weight: bold;
+    position: relative;
+    text-transform: uppercase;
+  }
+  
+  a:link {
+      text-decoration: none;
+  }
+  
+  a:hover {
+      text-decoration: underline;
+      color: #333;
+  
+  }
+  a:hover::after {
+    height: 100%;
+  }
+  
+  
+  /* GENERAL BUTTON STYLING */
+  button,
+  button::after {
+    -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+      transition: all 0.3s;
+  }
+  
+  button {
+    padding: 0, 0, 0, 0;
+    background: none;
+    border: 3px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    display: block;
+    font-size : 1em;
+    font-weight: bold;
+    position: relative;
+    text-transform: uppercase;
+    width: 130px;
+    height: 50px;
+  }
+  button:hover {
+      background-color: #fff;
+      color: #333;
+  }
+  
+      
