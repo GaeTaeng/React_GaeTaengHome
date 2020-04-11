@@ -19,7 +19,7 @@ function App(props) {
   return (
     <div className="App">
       <Navigation CheckMenu = {CheckMenu}/>
-      {state === "HOME" ? <Contents /> : <div>Start ! { state }</div> }
+      <Contents CheckMenu = {state}/>
       
       {/* <Contents /> */}
       

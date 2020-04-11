@@ -48,7 +48,7 @@ function Navigation(props) {
         <Menu
           MenuIdx={MenuIdx++}
           Address="/"
-          Content="게시판"
+          Content="BOARD"
           CheckMenu = {props.CheckMenu}
         />
 
