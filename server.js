@@ -6,13 +6,13 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}))
 
-
+//REST API
 app.get('/', (req, res) => {
-    res.send({message: 'Server Start'});
+    res.send({message: 'Welcome! Start'});
 });
 
 
-app.get('/api/post', (req, res) => {
+app.get('/api/contents', (req, res) => {
     nowDate = Date.now.toString;
     res.send([
         {

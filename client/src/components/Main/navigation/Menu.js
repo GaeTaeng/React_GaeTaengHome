@@ -7,8 +7,8 @@ function Menu(props) {
     //props.onClickNav();
     //여기서 STATE를 만들고
     const {CheckMenu, Address, Content} = props;
-    console.log("HI");
     return (
+        <element id="MenuButton">
         <button onClick = {() => CheckMenu(Content)}>
                 <div>
                     {Content}
@@ -16,6 +16,7 @@ function Menu(props) {
                 {Address !== '/'? () => window.open(Address) : ""}
                 
         </button>
+        </element>
     )
 }
 

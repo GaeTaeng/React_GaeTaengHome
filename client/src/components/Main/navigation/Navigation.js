@@ -41,7 +41,7 @@ function Navigation(props) {
         <Menu
           MenuIdx={MenuIdx++}
           Address="/"
-          Content="테트리스"
+          Content="MINIGAME"
           CheckMenu = {props.CheckMenu}
         />
         <hr />

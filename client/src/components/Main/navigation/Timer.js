@@ -1,26 +1,22 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import './Timer.css'
-
+let test = 0;
 function Timer() {
 
     const [date, setDate] = useState("Wait! Timer");
-    let timeID;
     function Change() {
       setDate(new Date().toLocaleTimeString());
-      componentWIllUnmount();
+      //componentWIllUnmount();
     }
-    function componentDidMount() {
-      timeID = setInterval(
+    useEffect(() => {
+      const timeID = setInterval(
         () => Change(), 1000
       )
-    }
-    
-function componentWIllUnmount() {
-    clearInterval(timeID)
-  }
+      return () => clearInterval(timeID);
+    },[])
     return(
       <div id="timer">
-        <div id="menu">{date}{componentDidMount()}</div>
+        <div id="menu">{date}</div>
       </div>
     )
 }

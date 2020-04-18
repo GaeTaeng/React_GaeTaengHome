@@ -9,23 +9,25 @@ import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { useState } from 'react';
+import { useTheme, useState } from 'react';
 
 const useStyles = makeStyles({
     root: {
         overflowX: "auto",
-        maxWidth:'100vh',
+        maxWidth: '100vh',
     },
     table: {
-        minWidth:'100vh',
-    }
+        minWidth: '100vh',
+    },
+    progress: {
+        //mrgin: theme.spacing.unit * 2,
+    },
 });
-
-
 export default function Board() {
-   
+
     console.log("Board!!");
     return (
         <div id="Board">
@@ -34,42 +36,28 @@ export default function Board() {
     )
 }
 
-
-
 function PostList() {
     const classes = useStyles();
-
     const [posts, setPosts] = useState("");
-    /*componentDidMount() {
-        this.callApi().then(res => this.setState({posts:res}))
-        .catch(err => console.log(err));
-    }
-    */
-    console.log("PostList!!");
-    useEffect(() => {
-        async function callAPI() {
-            const response = await fetch('/api/post');
-            const body = await response.json();
-            console.log("BODY : " + body);
-            return body;
-        }
-        console.log("callAPI. . .");
-        callAPI().then(
-            (res) => { setPosts(res)}
-        );
+    const [completed, setCompleted] = useState(0);
 
-       // this.callApi().then(res => this.setState({posts:res}))
-        //.catch(err => console.log(err));
-        /*
-        callApi = async () => {
-            const response = await fetch('/api/post');
-            const body = await response.json();
-            return body;
-        }.then(
-            
-        )
-        */
-    },[]);
+    async function callAPI() {
+        const response = await fetch('/api/contents');
+        const body = await response.json();
+        console.log("BODY : " + body);
+        return body;
+    }
+    function progress() {
+        setCompleted(completed >= 100 ? 0 : completed + 1);
+        console.log("?! completed : " + completed);
+    }
+
+    const timer = setInterval(() => progress(), 1000);
+    useEffect(() => {
+        console.log("?")
+        callAPI().then(setPosts);
+         return () => clearInterval(timer);
+    }, []);
 
     return (
         <Paper className={classes.root}>
@@ -86,11 +74,17 @@ function PostList() {
 
                 <TableBody>
                     {posts ? console.log(posts) : console.log("posts is Null")}
-                    {posts ? posts.map(p => {
+                    {posts ? posts.map((p, index) => {
                         return (
-                            <PostView id={p.id} title={p.title} content={p.content} writer={p.writer} date={p.date} />
+                            <PostView key={index} id={p.id} title={p.title} content={p.content} writer={p.writer} date={p.date} />
                         )
-                    }) : console.log("posts is Null")}
+                    }) :
+                        <TableRow>
+                            <TableCell colSpan='5' align="center">
+                                <CircularProgress className={classes.progress} variant="determinate" value={completed} />
+                            </TableCell>
+                        </TableRow>
+                    }
                 </TableBody>
 
             </Table>
@@ -101,7 +95,7 @@ function PostList() {
 function PostView(props) {
     return (
         <TableRow>
-            
+
             <TableCell>{props.id}</TableCell>
             <TableCell>{props.title}</TableCell>
             <TableCell>{props.content}</TableCell>
