@@ -1,6 +1,5 @@
 import React, { useState, useEffect }  from 'react';
 import './Timer.css'
-let test = 0;
 function Timer() {
 
     const [date, setDate] = useState("Wait! Timer");

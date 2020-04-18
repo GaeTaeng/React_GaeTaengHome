@@ -12,7 +12,7 @@ import TableCell from '@material-ui/core/TableCell';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { useTheme, useState } from 'react';
+import { useState } from 'react';
 
 const useStyles = makeStyles({
     root: {
@@ -40,23 +40,29 @@ function PostList() {
     const classes = useStyles();
     const [posts, setPosts] = useState("");
     const [completed, setCompleted] = useState(0);
-
+    const [timer, setTimer] = useState(null);
     async function callAPI() {
         const response = await fetch('/api/contents');
         const body = await response.json();
         console.log("BODY : " + body);
         return body;
     }
-    function progress() {
-        setCompleted(completed >= 100 ? 0 : completed + 1);
-        console.log("?! completed : " + completed);
-    }
 
-    const timer = setInterval(() => progress(), 1000);
+    function clear() {
+        clearInterval(timer);
+        console.log("CLEAR! timer " + timer);
+    }
     useEffect(() => {
-        console.log("?")
+        function tick() {
+            var oldCompleted = completed;
+            setCompleted((oldCompleted) => (oldCompleted >= 100 ? 0 : oldCompleted + 1));
+        }
+        setTimer(setInterval(tick, 20));
+        console.log("timer ::: " + timer)
         callAPI().then(setPosts);
-         return () => clearInterval(timer);
+         return () => {
+             clear();
+         }
     }, []);
 
     return (
@@ -76,12 +82,12 @@ function PostList() {
                     {posts ? console.log(posts) : console.log("posts is Null")}
                     {posts ? posts.map((p, index) => {
                         return (
-                            <PostView key={index} id={p.id} title={p.title} content={p.content} writer={p.writer} date={p.date} />
+                            <PostView key={index} id={p.id} title={p.title} content={p.content} writer={p.writer} date={p.date} finish={clear()} />
                         )
                     }) :
                         <TableRow>
                             <TableCell colSpan='5' align="center">
-                                <CircularProgress className={classes.progress} variant="determinate" value={completed} />
+                                <CircularProgress variant="determinate" value={completed} />
                             </TableCell>
                         </TableRow>
                     }
