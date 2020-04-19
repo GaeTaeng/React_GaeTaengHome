@@ -17,10 +17,24 @@ function Navigation(props) {
           CheckMenu = {props.CheckMenu}
         />
         <hr />
-        <Menu
+        {/* <Menu
           MenuIdx={MenuIdx++}
           Address="/"
           Content="PROFILE"
+          CheckMenu = {props.CheckMenu}
+        />
+        <hr /> */}
+        <Menu
+          MenuIdx={MenuIdx++}
+          Address="/"
+          Content="MINIGAME"
+          CheckMenu = {props.CheckMenu}
+        />
+        <hr />
+        <Menu
+          MenuIdx={MenuIdx++}
+          Address="/"
+          Content="BOARD"
           CheckMenu = {props.CheckMenu}
         />
         <hr />
@@ -35,20 +49,6 @@ function Navigation(props) {
           MenuIdx={MenuIdx++}
           Address="https://www.linkedin.com/in/tae-hun-kim-434552168/"
           Content="LinkedIn"
-          CheckMenu = {props.CheckMenu}
-        />
-        <hr />
-        <Menu
-          MenuIdx={MenuIdx++}
-          Address="/"
-          Content="MINIGAME"
-          CheckMenu = {props.CheckMenu}
-        />
-        <hr />
-        <Menu
-          MenuIdx={MenuIdx++}
-          Address="/"
-          Content="BOARD"
           CheckMenu = {props.CheckMenu}
         />
 

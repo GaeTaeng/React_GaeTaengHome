@@ -8,15 +8,17 @@ export default function Shiritori() {
     const inputRef = useRef(null);
     const [wordList, setWordList] = useState([]);
     let subList = [];
-    function onButtonClick() {
+    function onCheckAnswer() {
         if (word[word.length - 1] === inputWord[0]) {
             setResult("정답!");
             setWord(inputWord);
             setInputWord('');
             subList.push(inputWord); 
-            console.log("정답!SUB" + subList.length);
-            setWordList(...wordList, inputWord);
-            console.log("정답!" + wordList.length);
+            //console.log("정답!SUB" + subList.length);
+            wordList.push(inputWord);
+            //setWordList(...wordList+inputWord);
+            console.log(wordList);
+            //console.log("정답!" + wordList.length);
         } else {
             console.log(wordList.length);
             setResult("오답!");
@@ -33,7 +35,7 @@ export default function Shiritori() {
     }
     function onKeyPress(e) {
         if (e.key === "Enter") {
-            onButtonClick();
+            onCheckAnswer();
         }
     }
     return (
@@ -41,12 +43,17 @@ export default function Shiritori() {
             <div>끝말잇기 ------</div>
             <div className = "Shiritori">
                 <div>현재단어 : </div><div className="word">{word}</div>
-                    <input ref={inputRef} value={inputWord} onChange={onChangeInput} onClick={onClickInput} onKeyPress={onKeyPress} />
-                    <button onClick={onButtonClick}>PASS!</button>
+                    <input ref={inputRef} value={inputWord} onChange={onChangeInput} onClick={onClickInput} onKeyPress={onKeyPress} maxLength='4' minLength='2'/>
+                    <button onClick={onCheckAnswer}>PASS!</button>
                 <div>{result}</div>
                 <div>정답 개수 : {wordList.length}</div>
-                <div>
-                {wordList}
+               <div>
+                {wordList ? wordList.map( p => {
+                    return (
+                        <div>{p}</div>
+                    )
+                }
+                ) : "정답이 없습니다."}
                 </div>
             </div>
         </element>

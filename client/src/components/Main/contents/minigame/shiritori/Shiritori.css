@@ -37,5 +37,6 @@
 #Shiritori .Shiritori{
     border: 5px solid #333;
     width: 30vw;
-    padding : 10vh 10vh 10vh 30vh;
+    padding : 10vh 10vh 10vh 10vh;
+    margin-left : 25vh;
 }
