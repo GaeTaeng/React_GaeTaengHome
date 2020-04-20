@@ -5,8 +5,9 @@
         "client": "cd client && npm start",
         "build": "cd client && npm run build",
         "server": "nodemon server.js",
-        "deploy": "npm run server",
-        "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+        "deploy": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+        "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+        "start" : "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
     },
     "dependencies": {
         "body-parser": "^1.19.0",
@@ -17,5 +18,3 @@
         "concurrently": "^4.0.1"
     }
 }
-
-
