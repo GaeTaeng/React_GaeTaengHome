@@ -11,7 +11,7 @@ function Contents(props) {
             props.CheckMenu === "HOME" ? (<Home />) : 
             props.CheckMenu === "BOARD" ? (<Board />) :
             props.CheckMenu === "MINIGAME" ? (<MiniGame />) :
-             <div>Start ! { props.CheckMenu }</div> }
+             <div>Start ! { props.CheckMenu } 추후 구현 예정인 메뉴입니다.</div> }
         
         </div>
     )

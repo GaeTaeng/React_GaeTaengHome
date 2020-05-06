@@ -1,8 +1,53 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
-const port = process.env.PORT || 8080;
 
+const port = process.env.PORT || 5000;
+
+
+
+//DB(MYSQL) 연결 Start
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'rlaxogns2!',
+  database : 'taenghome'
+});
+ 
+connection.connect(function(err) {
+    if (err) {
+      console.error('error connecting: ' + err.stack);
+      return;
+    }
+    console.log('connected as id ' + connection.threadId);
+  });
+//DB연결 END
+
+function board_insert_into(post) {
+    let sql = "INSERT INTO boardtbl VALUES (" + post[id] +", '" + post[title] +", '" + post[title] +", '" + post[title] +", '" + post[title];
+    connection.query('insert into ')
+    // 'id': 2,
+    // 'title': "2 Post",
+    // 'content': "내용2",
+    // 'writer': "힁흐이희잏이ㅣ",
+    // 'date': nowDate
+}
+
+connection.query('create table boardtbl')
+
+
+
+  connection.query('SELECT * from usertbl', function (error, results, fields) {
+    if (error) throw error;
+    // connected!
+    console.log("taenghome's usertbl values : ");
+    console.log(results);
+  });
+
+ 
+connection.end();
+
+const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}))
 
@@ -11,9 +56,14 @@ app.get('/', (req, res) => {
     res.send({message: 'Welcome! Start'});
 });
 
-
+//localhost:port//api/contents
 app.get('/api/contents', (req, res) => {
+    console.log("HI");
+        
     nowDate = Date.now.toString;
+    console.log("BACK HI! THIS MYSQL CONNECTION!");
+
+
     res.send([
         {
             'id': 1,
@@ -54,3 +104,5 @@ app.get('/api/contents', (req, res) => {
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+

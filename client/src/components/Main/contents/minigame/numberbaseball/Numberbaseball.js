@@ -10,6 +10,7 @@ export default function Numberbaseball() {
     const [ballArray, setBallArray] = useState([]);
     const [outArray, setOutArray] = useState([]);
 
+    const inputRef = useRef(null);
     console.log("WORLD Strike")
     console.log(strikeArray);
 
@@ -60,24 +61,24 @@ export default function Numberbaseball() {
 
         setStrikeArray(
             [
-                ...strikeArray,arr[0]
+                ...strikeArray, arr[0]
             ]
         );
         console.log(arr[0]);
         setBallArray(
             [
-                ...ballArray,arr[1]
+                ...ballArray, arr[1]
             ]
         );
         setOutArray(
             [
-                ...outArray,arr[2]
+                ...outArray, arr[2]
             ]
         );
-        
+
 
         console.log("CheckNum : ");
-        console.log (strikeArray);
+        console.log(strikeArray);
         console.log(ballArray);
         console.log(outArray);
     }
@@ -87,6 +88,7 @@ export default function Numberbaseball() {
     }
     function onClickButtonReset() {
         MakeNumber();
+        setInputWord('');
     }
     function onChangeInput(e) {
         setInputWord(e.target.value);
@@ -94,23 +96,35 @@ export default function Numberbaseball() {
     function onKeyPress(e) {
         if (e.key === "Enter") {
             CheckNumber();
+            setInputWord('');
         }
     }
     return (
         <element id="Numberbaseball">
-        {console.log("Main start Strike ")}
-        {console.log(strikeArray)}
-            <div>현재 숫자 :: {word}</div>
-            <input onKeyPress={onKeyPress} value={inputWord} onChange={onChangeInput} maxLength='4' />
-            <button onClick={onClickButtonAnswer}>GO!</button>
-            <button onClick={onClickButtonReset}>초기화</button>
-            {console.log("MAIN Strike")}
-            {console.log(strikeArray)}
-            <div>{strikeArray > 0 ? strikeArray.map( p=> {
-                return (
-                    {p}
-                )
-            }) : "0"}Strike!
+            <div>숫자야구게임 ----</div>
+            <div className="Numberbaseball">
+                <div>현재 숫자 :: {word}</div>
+                <input ref={inputRef} onKeyPress={onKeyPress} value={inputWord} onChange={onChangeInput} maxLength='4' />
+                <button onClick={onClickButtonAnswer}>GO!</button>
+                <button onClick={onClickButtonReset}>초기화</button>
+                {console.log("MAIN Strike")}
+                {console.log(strikeArray)}
+                
+                <div>{(strikeArray.length > 0) ? strikeArray.map((p,index) => {
+                    if(p == 4) {
+                        return (
+                            <div>4Strike!!!! 홈런입니다 !!!!<br/>초기화 버튼을 눌러 다시 진행하여 주세요!</div>
+                        )
+                    }
+                    return (
+                        <div>{p}Strike!
+                          {ballArray[index]}Ball!
+                          {outArray[index]}Out!
+                        </div>
+                    )
+                }) : "0Strike!"}
+                  
+                </div>
             </div>
         </element>
     )
