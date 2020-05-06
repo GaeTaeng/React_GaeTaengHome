@@ -23,20 +23,6 @@ connection.connect(function(err) {
   });
 //DB연결 END
 
-function board_insert_into(post) {
-    let sql = "INSERT INTO boardtbl VALUES (" + post[id] +", '" + post[title] +", '" + post[title] +", '" + post[title] +", '" + post[title];
-    connection.query('insert into ')
-    // 'id': 2,
-    // 'title': "2 Post",
-    // 'content': "내용2",
-    // 'writer': "힁흐이희잏이ㅣ",
-    // 'date': nowDate
-}
-
-connection.query('create table boardtbl')
-
-
-
   connection.query('SELECT * from usertbl', function (error, results, fields) {
     if (error) throw error;
     // connected!
@@ -102,6 +88,19 @@ app.get('/api/contents', (req, res) => {
         }
     ]);
 });
+
+app.get('/form', function (req, res, next) {
+  res.render('form');
+})
+app.post('/form', function (req, res, next) {
+  mysql.query('INSERT INTO boardtbl SET ?', req.body, function(err, rs) {
+    res.send('Insert Success');
+  })
+})
+
+
+
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
