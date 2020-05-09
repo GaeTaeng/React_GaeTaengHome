@@ -9,7 +9,7 @@ export default function Numberbaseball() {
     const [strikeArray, setStrikeArray] = useState([]);
     const [ballArray, setBallArray] = useState([]);
     const [outArray, setOutArray] = useState([]);
-
+    const [numberArray, setnumberArray] = useState([]);
     const inputRef = useRef(null);
     console.log("WORLD Strike")
     console.log(strikeArray);
@@ -40,6 +40,7 @@ export default function Numberbaseball() {
     }
 
     function CheckNumber() {
+        numberArray.push(inputWord);
         console.log("CheckNumber start Strike")
         console.log(strikeArray);
         let arr = [0, 0, 0];
@@ -84,6 +85,7 @@ export default function Numberbaseball() {
     }
     function onClickButtonAnswer() {
         CheckNumber();
+        inputRef.current.focus();
 
     }
     function onClickButtonReset() {
@@ -92,6 +94,7 @@ export default function Numberbaseball() {
     }
     function onChangeInput(e) {
         setInputWord(e.target.value);
+        inputRef.current.focus();
     }
     function onKeyPress(e) {
         if (e.key === "Enter") {
@@ -103,7 +106,6 @@ export default function Numberbaseball() {
         <element id="Numberbaseball">
             <div>숫자야구게임 ----</div>
             <div className="Numberbaseball">
-                <div>현재 숫자 :: {word}</div>
                 <input ref={inputRef} onKeyPress={onKeyPress} value={inputWord} onChange={onChangeInput} maxLength='4' />
                 <button onClick={onClickButtonAnswer}>GO!</button>
                 <button onClick={onClickButtonReset}>초기화</button>
@@ -111,15 +113,16 @@ export default function Numberbaseball() {
                 {console.log(strikeArray)}
                 
                 <div>{(strikeArray.length > 0) ? strikeArray.map((p,index) => {
-                    if(p == 4) {
+                    if(p === 4) {
                         return (
-                            <div>4Strike!!!! 홈런입니다 !!!!<br/>초기화 버튼을 눌러 다시 진행하여 주세요!</div>
+                            <div>정답 숫자 :: {word} 4Strike!!!! 홈런입니다 !!!!<br/>초기화 버튼을 눌러 다시 진행하여 주세요!</div>
                         )
                     }
                     return (
                         <div>{p}Strike!
                           {ballArray[index]}Ball!
                           {outArray[index]}Out!
+                             ///   {numberArray[index]}
                         </div>
                     )
                 }) : "0Strike!"}

@@ -42,31 +42,35 @@ function PostList() {
     const [completed, setCompleted] = useState(0);
     const [timer, setTimer] = useState(null);
     async function callAPI() {
-        const response = await fetch('/api/contents');
+        const response = await fetch('http://gaetaeng.com:5000/api/contents');
         const body = await response.json();
-        console.log("BODY : " + body);
         return body;
     }
 
-    function clear() {
+    function clearTimer() {
         clearInterval(timer);
         console.log("CLEAR! timer " + timer);
     }
     useEffect(() => {
         function tick() {
-            var oldCompleted = completed;
+            let oldCompleted = completed;
             setCompleted((oldCompleted) => (oldCompleted >= 100 ? 0 : oldCompleted + 1));
         }
         setTimer(setInterval(tick, 20));
         console.log("timer ::: " + timer)
         callAPI().then(setPosts);
          return () => {
-             clear();
+            clearTimer();
          }
     }, []);
 
     return (
         <Paper className={classes.root}>
+            <Table>
+                <TableHead>
+                    <TableRow>Material UI를 사용하였습니다.</TableRow>
+                </TableHead>
+            </Table>
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
@@ -82,7 +86,7 @@ function PostList() {
                     {posts ? console.log(posts) : console.log("posts is Null")}
                     {posts ? posts.map((p, index) => {
                         return (
-                            <PostView key={index} id={p.id} title={p.title} content={p.content} writer={p.writer} date={p.date} finish={clear()} />
+                            <PostView key={index} id={p.id} title={p.title} content={p.content} writer={p.writer} date={p.date} finish={clearTimer()} />
                         )
                     }) :
                         <TableRow>

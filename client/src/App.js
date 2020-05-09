@@ -26,8 +26,8 @@ function App(props) {
       <div id="bottom">
         make with React_Node.js
         GaeTaeng's Home <br />
-        Naver : 000000@naver.com <br />
-        GMail : 000000@gmail.com <br />
+        Naver : nuckly@naver.com <br />
+        GMail : nuckly60@gmail.com <br />
       </div>
 
     </div>

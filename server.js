@@ -1,11 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const cors = require('cors');
 const port = process.env.PORT || 5000;
 
 
+console.log("why!!!!!!!!!!");
 
 //DB(MYSQL) 연결 Start
+/*
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
   host     : 'localhost',
@@ -13,7 +15,6 @@ var connection = mysql.createConnection({
   password : 'rlaxogns2!',
   database : 'taenghome'
 });
- 
 connection.connect(function(err) {
     if (err) {
       console.error('error connecting: ' + err.stack);
@@ -22,34 +23,40 @@ connection.connect(function(err) {
     console.log('connected as id ' + connection.threadId);
   });
 //DB연결 END
-
   connection.query('SELECT * from usertbl', function (error, results, fields) {
     if (error) throw error;
     // connected!
     console.log("taenghome's usertbl values : ");
     console.log(results);
   });
-
  
 connection.end();
-
+*/
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}))
 
+//cors 미들웨어
+const corsOptions = {
+  origin : "http://localhost:80",
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
 //REST API
 app.get('/', (req, res) => {
     res.send({message: 'Welcome! Start'});
+    console.log("HI!");
 });
 
 //localhost:port//api/contents
 app.get('/api/contents', (req, res) => {
     console.log("HI");
-        
     nowDate = Date.now.toString;
     console.log("BACK HI! THIS MYSQL CONNECTION!");
 
-
+  
+    res.header("Access-Control-Allow-Origin", "*");
     res.send([
         {
             'id': 1,
@@ -88,15 +95,6 @@ app.get('/api/contents', (req, res) => {
         }
     ]);
 });
-
-app.get('/form', function (req, res, next) {
-  res.render('form');
-})
-app.post('/form', function (req, res, next) {
-  mysql.query('INSERT INTO boardtbl SET ?', req.body, function(err, rs) {
-    res.send('Insert Success');
-  })
-})
 
 
 
