@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import "./Board.css";
-
+import "./NewPost"
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
@@ -13,6 +13,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
+import NewPost from './NewPost';
 
 const useStyles = makeStyles({
     root: {
@@ -41,6 +42,7 @@ function PostList() {
     const [posts, setPosts] = useState("");
     const [completed, setCompleted] = useState(0);
     const [timer, setTimer] = useState(null);
+    const [checkstate, setcheckState] = useState("BOARD");
     async function callAPI() {
         const response = await fetch('http://gaetaeng.com:5000/api/contents');
         const body = await response.json();
@@ -63,12 +65,20 @@ function PostList() {
             clearTimer();
          }
     }, []);
+    function onClickCreatePost() {
+        setcheckState("NEW");
+    }
 
+    var checkStateval = (SELECTSTATE) => {
+        setcheckState(SELECTSTATE);
+      }
     return (
+        <div>
+            {checkstate === "BOARD" ?
         <Paper className={classes.root}>
             <Table>
                 <TableHead>
-                    <TableRow>Material UI를 사용하였습니다.</TableRow>
+                    <TableRow>Mysql(MariaDB) + Material UI를 사용하였습니다.</TableRow>
                 </TableHead>
             </Table>
             <Table className={classes.table}>
@@ -98,7 +108,13 @@ function PostList() {
                 </TableBody>
 
             </Table>
+            <button onClick = {onClickCreatePost}>글쓰기</button>
         </Paper>
+        :
+        <NewPost checkstate={checkStateval}/>
+        }
+        {console.log(checkstate)}
+        </div>
     )
 }
 
