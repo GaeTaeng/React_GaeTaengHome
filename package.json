@@ -18,7 +18,8 @@
     "mysql": "^2.18.1",
     "mysql-client": "^0.3.0",
     "mysql-server": "^1.0.5",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "react-video-tag": "0.0.10"
   },
   "devDependencies": {
     "concurrently": "^4.0.1"
