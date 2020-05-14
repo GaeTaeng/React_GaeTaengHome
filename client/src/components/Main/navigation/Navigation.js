@@ -19,7 +19,7 @@ function Navigation(props) {
       const screenwidth = window.innerWidth;
       console.log(screenwidth);
       let screenSize = screenwidth < 800 ? setWidth('0px') : setWidth('180px');
-      screenSize = screenwidth < 800 ? setPosition('fixed') : setPosition('relative');
+      screenSize = screenwidth < 800 ? setPosition('fixed') : setPosition('absolute');
     }
 
     useEffect(() => {
