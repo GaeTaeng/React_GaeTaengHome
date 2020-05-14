@@ -1,3 +1,7 @@
+#home .homeGroup{
+    height: 100vh;
+    background-color: rgb(252,252,255);
+}
 #home .FOOOOO {
     font-size: 13vh;
     font-weight: 1000;

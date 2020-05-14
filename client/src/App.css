@@ -1,4 +1,7 @@
 
+#App {
+    background-color: rgb(252,252,255);
+}
 #Navigation {
     float: left;
 }
@@ -22,6 +25,7 @@
 
 
 #Contents {
+    background-color: rgb(252,252,255);
     float:left;
     margin-bottom: 10vh;
 }

@@ -25,6 +25,12 @@ export default function PatchNote() {
                     <td>2020년 5월 15일</td>
                     <td>Navigation Bar 화면 크기에 따라 width값 조정</td>
                     </tr>
+
+                    
+                    <tr>
+                    <td>2020년 5월 15일</td>
+                    <td>video tag를 쓰면 button 쪽에 에러가 발생하여 &#60;img&#62; 태그에 gif 이미지 사용</td>
+                    </tr>
                 </tbody>
             </table>
         </element>
