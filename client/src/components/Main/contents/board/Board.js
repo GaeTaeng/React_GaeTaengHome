@@ -66,6 +66,10 @@ function PostList() {
     function onClickCreatePost() {
         setcheckState("NEW");
     }
+    async function onClickDeletePost() {
+        alert("undefined 에러인 게시물들을 삭제하였습니다.");
+        const response = await fetch('http://gaetaeng.com:5000/api/contentsdelete');
+    }
 
     var checkStateval = (SELECTSTATE) => {
         setcheckState(SELECTSTATE);
@@ -107,9 +111,12 @@ function PostList() {
 
             </Table>
             <button onClick = {onClickCreatePost}>글쓰기</button>
+            <button onClick = {onClickDeletePost}>에러삭제</button>
         </Paper>
         :
+        <div id="newPost">
         <NewPost checkstate={checkStateval}/>
+        </div>
         }
         {console.log(checkstate)}
         </div>

@@ -50,7 +50,7 @@ app.get('/api/contents', (req, res) => {
   console.log("(DB)connection boardtbl");
 
   connection.query('SELECT * from boardtbl', function (error, rows) {
-    console.log("this error (DB) connection boardtbl")
+    console.log("(DB) connection boardtbl GET")
     if (error) throw error;
     // connected!
     console.log("taenghome's boardtbl values : ");
@@ -60,8 +60,39 @@ app.get('/api/contents', (req, res) => {
   });
 });
 
+app.post('/api/contents', (req, res) => {
+ // res.header("Access-Control-Allow-Origin", "*");
+  var title = req.body[title];
+  var contents = req.body[contents];
+  var writer = req.body[writer];
+  var today = new Date();
+  var year = today.getFullYear(); // 년도
+  var month = today.getMonth() + 1;  // 월
+  var date = today.getDate();  // 날짜
+  var hours = today.getHours(); // 시
+  var minutes = today.getMinutes();  // 분
+  var seconds = today.getSeconds();  // 초
+
+  var thisdate = year+'/'+month+'/'+date+' '+hours+':'+minutes+':'+seconds;
+  //connection.query('insert into boardtbl (id, title, content, writer, date) values("0, '+title+', '+ contents+', '+ writer+', '+ thisdate+'")', function(err, rows) {
+    console.log("(DB) connection boardtbl POST")
+    connection.query('insert into boardtbl (title, content, writer, date) values(\''+ title+'\', \''+ contents+'\', \''+ writer+'\', \''+ thisdate.toString()+'\')', function(err, rows) {
+    console.log(''+ title+'\', \''+ contents+'\', \''+ writer+'\', \''+ thisdate.toString()+'')
+    if(err) { throw err;}
+    console.log("Data inserted!");
+})
+});
 
 
+app.get('/api/contentsdelete', (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  console.log("(DB)connection boardtbl will DELETE");
+
+  connection.query('delete from boardtbl  where title="undefined";', function (error, rows) {
+    console.log("(DB) connection boardtbl GET")
+    if (error) throw error;
+  });
+});
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 
