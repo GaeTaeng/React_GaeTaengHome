@@ -5,15 +5,23 @@
 
 #bottom {
     font-size: 17;
+    position:fixed;
+
     font-weight: 700;
     float: left;
-    width: 98vw;
+    width: 100vw;
+    height: 7.3vh;
+    bottom:0;
     background-color: #333;
     color: white;
     vertical-align: bottom;
+
+    max-height: 7.3vh;
+    min-height: 30px;
 }
 
 
 #Contents {
     float:left;
+    margin-bottom: 10vh;
 }

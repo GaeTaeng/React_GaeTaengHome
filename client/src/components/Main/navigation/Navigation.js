@@ -1,12 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './Navigation.css';
 
 import Timer from './Timer'
 import Menu from './Menu'
+
+
 function Navigation(props) {
     var MenuIdx = 1;
+    const [_width, setWidth] = useState('180px');
+    const [_position, setPosition] = useState('absolute');
+    const navstyle= {
+      width: _width,
+      height:'92.7vh',
+      position:_position,
+    };
+    
+    const onScreenCheck = () => {
+      const screenwidth = window.innerWidth;
+      console.log(screenwidth);
+      let screenSize = screenwidth < 800 ? setWidth('0px') : setWidth('180px');
+      screenSize = screenwidth < 800 ? setPosition('fixed') : setPosition('relative');
+    }
+
+    useEffect(() => {
+      onScreenCheck();
+      window.addEventListener('resize', onScreenCheck);
+  }, [])
+
   return (
-    <div id="Navigation">
+    <div id="Navigation" style = {navstyle}>
+
       <Timer />
       <div id="MenuList">
 
@@ -51,6 +74,13 @@ function Navigation(props) {
           Content="LinkedIn"
           CheckMenu = {props.CheckMenu}
         />
+        <hr />
+        <Menu
+        MenuIdx={MenuIdx++}
+        Address="/"
+        Content="PatchNote"
+        CheckMenu = {props.CheckMenu}
+      />
 
       </div>
     </div>

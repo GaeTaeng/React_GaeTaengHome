@@ -102,6 +102,18 @@ export default function Numberbaseball() {
             setInputWord('');
         }
     }
+    function onClickButtonexplains(e) {
+        alert("\
+랜덤한 중복되지않는 숫자 4자리가 지정될겁니다.(ex 1245)\n\
+(그 4자리 숫자의 위치까지 정확히 맞추면 정답!)\n\
+예상하는 숫자를 입력한 후 GO! 클릭\n\
+- 같은자리 같은 숫자면 Strike!\n\
+- 다른자리 같은 숫자면 Ball!\n\
+- 다른자리 없는 숫자면 Out!\n\
+ex)(1245기준)1437 입력시 \n\
+1Strike! 1Ball! 2Out!\
+")
+    }
     return (
         <element id="Numberbaseball">
             <div>숫자야구게임 ----</div>
@@ -109,6 +121,7 @@ export default function Numberbaseball() {
                 <input ref={inputRef} onKeyPress={onKeyPress} value={inputWord} onChange={onChangeInput} maxLength='4' />
                 <button onClick={onClickButtonAnswer}>GO!</button>
                 <button onClick={onClickButtonReset}>초기화</button>
+                <button onClick={onClickButtonexplains}>설명서</button>
                 {console.log("MAIN Strike")}
                 {console.log(strikeArray)}
                 

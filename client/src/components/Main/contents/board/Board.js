@@ -19,12 +19,10 @@ const useStyles = makeStyles({
     root: {
         overflowX: "auto",
         maxWidth: '100vh',
-    },
+        marginLeft:'25%',
+        },
     table: {
         minWidth: '100vh',
-    },
-    progress: {
-        //mrgin: theme.spacing.unit * 2,
     },
 });
 export default function Board() {
