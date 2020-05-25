@@ -7,28 +7,14 @@ import Menu from './Menu'
 
 function Navigation(props) {
     var MenuIdx = 1;
-    const [_width, setWidth] = useState('180px');
-    const [_position, setPosition] = useState('absolute');
+
     const navstyle= {
-      width: _width,
+      width: props.widthstyle,
       height:'92.7vh',
-      position:_position,
+      position: 'fixed',
     };
-    
-    const onScreenCheck = () => {
-      const screenwidth = window.innerWidth;
-      console.log(screenwidth);
-      let screenSize = screenwidth < 800 ? setWidth('0px') : setWidth('180px');
-      screenSize = screenwidth < 800 ? setPosition('fixed') : setPosition('absolute');
-    }
-
-    useEffect(() => {
-      onScreenCheck();
-      window.addEventListener('resize', onScreenCheck);
-  }, [])
-
   return (
-    <div id="Navigation" style = {navstyle}>
+    <div id="Navigation" style={navstyle}>
 
       <Timer />
       <div id="MenuList">
@@ -81,7 +67,7 @@ function Navigation(props) {
         Content="PatchNote"
         CheckMenu = {props.CheckMenu}
       />
-
+    
       </div>
     </div>
   )

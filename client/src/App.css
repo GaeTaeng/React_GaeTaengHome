@@ -8,7 +8,7 @@
 
 #bottom {
     font-size: 17;
-    position:fixed;
+    position: fixed;
 
     font-weight: 700;
     float: left;
@@ -28,4 +28,12 @@
     background-color: rgb(252,252,255);
     float:left;
     margin-bottom: 10vh;
+}
+
+#discord {
+    position: fixed;
+    float:right;
+    margin-bottom: 50vh;
+    margin-left : 80vw;
+    
 }

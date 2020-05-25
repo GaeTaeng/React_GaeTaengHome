@@ -16,6 +16,7 @@ export default function MiniGame() {
                 재미로 이용하여 주세요 ^^ <br/><br/>
            </div>
             <Numberbaseball />
+            
             <Shiritori />
             </div>
         </element>

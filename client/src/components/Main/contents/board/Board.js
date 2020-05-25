@@ -31,6 +31,7 @@ export default function Board() {
     return (
         <div id="Board">
             <PostList />
+            DB 테스트시 외에는 현재 서버를 종료시켜놓고 있습니다.
         </div>
     )
 }

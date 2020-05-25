@@ -135,7 +135,7 @@ ex)(1245기준)1437 입력시 \n\
                         <div>{p}Strike!
                           {ballArray[index]}Ball!
                           {outArray[index]}Out!
-                             ///   {numberArray[index]}
+                          &sol;&sol;&sol;   {numberArray[index]}
                         </div>
                     )
                 }) : "0Strike!"}
